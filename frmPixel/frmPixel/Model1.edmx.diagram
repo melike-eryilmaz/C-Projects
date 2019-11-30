@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2ce6b2db27b4ef4ba7cd4b28d86a3da" Name="Diagram1" ZoomLevel="29">
+        <EntityTypeShape EntityType="PixelDbModel.Companies" Width="1.5" PointX="1.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Customers" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Departments" Width="1.5" PointX="3.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.DepartmentToPersonels" Width="1.5" PointX="9" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.EducationDetails" Width="1.5" PointX="3.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Educations" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.EducationToStudents" Width="1.5" PointX="6.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Payments" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.PersonelDetails" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Personels" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.ProjectDetails" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Projects" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.Students" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PixelDbModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="PixelDbModel.FK_Departments_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_Payments_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_Projects_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_DepartmentToPersonels_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_Educations_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_Projects_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_DepartmentToPersonels_Personels" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_EducationDetails_Educations" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_EducationToStudents_Educations" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_EducationToStudents_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_Payments_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_PersonelDetails_Personels" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.FK_ProjectDetails_Projects" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.EducationToPersonel" ManuallyRouted="false" />
+        <AssociationConnector Association="PixelDbModel.ProjectToPersonel" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

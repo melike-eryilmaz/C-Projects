@@ -1,0 +1,15 @@
+﻿@model List<MelikeEryilmaz.Models.Abouts>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+<div>
+    <p>@item.AboutName</p> 
+    <p>@item.Description</p>
+
+</div>
+}
+

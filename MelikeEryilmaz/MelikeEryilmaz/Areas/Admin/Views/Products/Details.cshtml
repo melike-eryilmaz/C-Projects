@@ -1,0 +1,64 @@
+﻿@model MelikeEryilmaz.Models.Products
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Admin_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            <img src="@Model.ImageUrl" width="100" height="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categories.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails.RegisterDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.RegisterDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDetails.isAvailibity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDetails.isAvailibity)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

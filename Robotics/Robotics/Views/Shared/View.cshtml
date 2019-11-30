@@ -1,0 +1,30 @@
+﻿<nav id="nav-menu-container">
+    <ul class="nav-menu">
+        <li class="menu-active"><a href="@Url.Action("Index")">Home</a></li>
+        <li><a href="@Url.Action("About")">About Us</a></li>
+        <li><a href="@Url.Action("Services")">Services</a></li>
+        <li><a href="@Url.Action("Product")">Products</a></li>
+        <li class="menu-has-children">
+            <a href="@Url.Action("BlogHome")">Blog</a>
+            <ul>
+                <li><a href="@Url.Action("BlogHome")">Blog Home</a></li>
+                <li><a href="@Url.Action("BlogSingle")">Blog Single</a></li>
+            </ul>
+        </li>
+        <li><a href="@Url.Action("Contact")">Contact</a></li>
+        <li class="menu-has-children">
+            <a href="">Dropdown</a>
+            <ul>
+                <li><a href="@Url.Action("Elements")">Elements</a></li>
+                <li><a href="@Url.Action("ProductDetail")">Product Details</a></li>
+                <li class="menu-has-children">
+                    <a href="">Level 2</a>
+                    <ul>
+                        <li><a href="#">Item 1</a></li>
+                        <li><a href="#">Item 2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav><!-- #nav-menu-container -->

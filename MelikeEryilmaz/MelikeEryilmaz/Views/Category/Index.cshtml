@@ -1,0 +1,12 @@
+﻿@model List<MelikeEryilmaz.Models.Categories>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@foreach (var item in Model)
+{
+    <div>  @item.CategoryName </div>
+
+}
+
+

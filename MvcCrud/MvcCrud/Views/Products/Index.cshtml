@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+@model  List<MvcCrud.Models.Products>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th> Unit Price</th>
+
+            <th> Units in Stock</th>
+            <th></th>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.UnitPrice</td>
+            <td>@item.UnitsInStock</td>
+            <td>@Html.ActionLink("Detail","Detail","Products",new { id=item.ProductID},null)</td>
+        </tr>
+        }
+
+    </table>
+</body>
+</html>

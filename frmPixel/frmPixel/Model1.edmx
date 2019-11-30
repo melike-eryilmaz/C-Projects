@@ -1,0 +1,1144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PixelDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="30" />
+          <Property Name="TotalRevenues" Type="float" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerIdNo" Type="char" MaxLength="11" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="10" />
+          <Property Name="Address" Type="varbinary" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="tinyint" Nullable="false" />
+          <Property Name="DepartmentName" Type="varbinary" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="DepartmentToPersonels">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="DepartmentId" Type="tinyint" Nullable="false" />
+          <Property Name="PersonelId" Type="tinyint" Nullable="false" />
+          <Property Name="StartDate" Type="smalldatetime" />
+          <Property Name="EndDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="EducationDetails">
+          <Key>
+            <PropertyRef Name="EducationId" />
+          </Key>
+          <Property Name="EducationId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoursOfEducation" Type="smallint" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Description" Type="varbinary(max)" />
+          <Property Name="EducationPeriod" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Educations">
+          <Key>
+            <PropertyRef Name="EducationId" />
+          </Key>
+          <Property Name="EducationId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="tinyint" Nullable="false" />
+          <Property Name="EducationName" Type="varchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="EducationToPersonel">
+          <Key>
+            <PropertyRef Name="EducationId" />
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="EducationId" Type="tinyint" Nullable="false" />
+          <Property Name="PersonelId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EducationToStudents">
+          <Key>
+            <PropertyRef Name="EducationId" />
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="EducationId" Type="tinyint" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="RegisterDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="PaymentName" Type="varbinary" MaxLength="50" />
+          <Property Name="PaymentType" Type="smallint" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="PaymentDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="PersonelDetails">
+          <Key>
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="PersonelId" Type="tinyint" Nullable="false" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="BornDate" Type="smalldatetime" />
+          <Property Name="İnterests" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Personels">
+          <Key>
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="PersonelId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonelName" Type="varchar" MaxLength="50" />
+          <Property Name="IdNo" Type="char" MaxLength="11" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProjectDetails">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="StartDate" Type="smalldatetime" />
+          <Property Name="EndDate" Type="smalldatetime" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="tinyint" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProjectToPersonel">
+          <Key>
+            <PropertyRef Name="PersonelId" />
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="PersonelId" Type="tinyint" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentToPersonels_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="DepartmentToPersonels" Type="Self.DepartmentToPersonels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="DepartmentToPersonels">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentToPersonels_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="DepartmentToPersonels" Type="Self.DepartmentToPersonels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="DepartmentToPersonels">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationDetails_Educations">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="1" />
+          <End Role="EducationDetails" Type="Self.EducationDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Educations">
+              <PropertyRef Name="EducationId" />
+            </Principal>
+            <Dependent Role="EducationDetails">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Educations_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Educations" Type="Self.Educations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Educations">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToPersonel_Educations">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="1" />
+          <End Role="EducationToPersonel" Type="Self.EducationToPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educations">
+              <PropertyRef Name="EducationId" />
+            </Principal>
+            <Dependent Role="EducationToPersonel">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToPersonel_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="EducationToPersonel" Type="Self.EducationToPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="EducationToPersonel">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToStudents_Educations">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="1" />
+          <End Role="EducationToStudents" Type="Self.EducationToStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educations">
+              <PropertyRef Name="EducationId" />
+            </Principal>
+            <Dependent Role="EducationToStudents">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToStudents_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="EducationToStudents" Type="Self.EducationToStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="EducationToStudents">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonelDetails_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="PersonelDetails" Type="Self.PersonelDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="PersonelDetails">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDetails_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectDetails">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectToPersonel_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="ProjectToPersonel" Type="Self.ProjectToPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="ProjectToPersonel">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectToPersonel_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectToPersonel" Type="Self.ProjectToPersonel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectToPersonel">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="PixelDbModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentToPersonels" EntityType="Self.DepartmentToPersonels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationDetails" EntityType="Self.EducationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Educations" EntityType="Self.Educations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationToPersonel" EntityType="Self.EducationToPersonel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EducationToStudents" EntityType="Self.EducationToStudents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonelDetails" EntityType="Self.PersonelDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personels" EntityType="Self.Personels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectToPersonel" EntityType="Self.ProjectToPersonel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Departments_Companies" Association="Self.FK_Departments_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentToPersonels_Departments" Association="Self.FK_DepartmentToPersonels_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentToPersonels" EntitySet="DepartmentToPersonels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentToPersonels_Personels" Association="Self.FK_DepartmentToPersonels_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="DepartmentToPersonels" EntitySet="DepartmentToPersonels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationDetails_Educations" Association="Self.FK_EducationDetails_Educations">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="EducationDetails" EntitySet="EducationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Educations_Departments" Association="Self.FK_Educations_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Educations" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToPersonel_Educations" Association="Self.FK_EducationToPersonel_Educations">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="EducationToPersonel" EntitySet="EducationToPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToPersonel_Personels" Association="Self.FK_EducationToPersonel_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="EducationToPersonel" EntitySet="EducationToPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToStudents_Educations" Association="Self.FK_EducationToStudents_Educations">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="EducationToStudents" EntitySet="EducationToStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToStudents_Students" Association="Self.FK_EducationToStudents_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="EducationToStudents" EntitySet="EducationToStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Customers" Association="Self.FK_Payments_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Students" Association="Self.FK_Payments_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonelDetails_Personels" Association="Self.FK_PersonelDetails_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="PersonelDetails" EntitySet="PersonelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_Projects" Association="Self.FK_ProjectDetails_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Customers" Association="Self.FK_Projects_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Departments" Association="Self.FK_Projects_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectToPersonel_Personels" Association="Self.FK_ProjectToPersonel_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="ProjectToPersonel" EntitySet="ProjectToPersonel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectToPersonel_Projects" Association="Self.FK_ProjectToPersonel_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectToPersonel" EntitySet="ProjectToPersonel" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PixelDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TotalRevenues" Type="Double" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Departments_Companies" FromRole="Companies" ToRole="Departments" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerIdNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Address" Type="Binary" MaxLength="150" FixedLength="false" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Customers" FromRole="Customers" ToRole="Payments" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Customers" FromRole="Customers" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Byte" Nullable="false" />
+          <Property Name="DepartmentName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Departments_Companies" FromRole="Departments" ToRole="Companies" />
+          <NavigationProperty Name="DepartmentToPersonels" Relationship="Self.FK_DepartmentToPersonels_Departments" FromRole="Departments" ToRole="DepartmentToPersonels" />
+          <NavigationProperty Name="Educations" Relationship="Self.FK_Educations_Departments" FromRole="Departments" ToRole="Educations" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Projects_Departments" FromRole="Departments" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="DepartmentToPersonels">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Byte" Nullable="false" />
+          <Property Name="PersonelId" Type="Byte" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_DepartmentToPersonels_Departments" FromRole="DepartmentToPersonels" ToRole="Departments" />
+          <NavigationProperty Name="Personels" Relationship="Self.FK_DepartmentToPersonels_Personels" FromRole="DepartmentToPersonels" ToRole="Personels" />
+        </EntityType>
+        <EntityType Name="EducationDetails">
+          <Key>
+            <PropertyRef Name="EducationId" />
+          </Key>
+          <Property Name="EducationId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoursOfEducation" Type="Int16" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Description" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="EducationPeriod" Type="Byte" />
+          <NavigationProperty Name="Educations" Relationship="Self.FK_EducationDetails_Educations" FromRole="EducationDetails" ToRole="Educations" />
+        </EntityType>
+        <EntityType Name="Educations">
+          <Key>
+            <PropertyRef Name="EducationId" />
+          </Key>
+          <Property Name="EducationId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId" Type="Byte" Nullable="false" />
+          <Property Name="EducationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Educations_Departments" FromRole="Educations" ToRole="Departments" />
+          <NavigationProperty Name="EducationDetails" Relationship="Self.FK_EducationDetails_Educations" FromRole="Educations" ToRole="EducationDetails" />
+          <NavigationProperty Name="EducationToStudents" Relationship="Self.FK_EducationToStudents_Educations" FromRole="Educations" ToRole="EducationToStudents" />
+          <NavigationProperty Name="Personels" Relationship="Self.EducationToPersonel" FromRole="Educations" ToRole="Personels" />
+        </EntityType>
+        <EntityType Name="EducationToStudents">
+          <Key>
+            <PropertyRef Name="EducationId" />
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="EducationId" Type="Byte" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Educations" Relationship="Self.FK_EducationToStudents_Educations" FromRole="EducationToStudents" ToRole="Educations" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_EducationToStudents_Students" FromRole="EducationToStudents" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentId" />
+          </Key>
+          <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentName" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="PaymentType" Type="Int16" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Payments_Customers" FromRole="Payments" ToRole="Customers" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Payments_Students" FromRole="Payments" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="PersonelDetails">
+          <Key>
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="PersonelId" Type="Byte" Nullable="false" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BornDate" Type="DateTime" Precision="0" />
+          <Property Name="İnterests" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personels" Relationship="Self.FK_PersonelDetails_Personels" FromRole="PersonelDetails" ToRole="Personels" />
+        </EntityType>
+        <EntityType Name="Personels">
+          <Key>
+            <PropertyRef Name="PersonelId" />
+          </Key>
+          <Property Name="PersonelId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="DepartmentToPersonels" Relationship="Self.FK_DepartmentToPersonels_Personels" FromRole="Personels" ToRole="DepartmentToPersonels" />
+          <NavigationProperty Name="PersonelDetails" Relationship="Self.FK_PersonelDetails_Personels" FromRole="Personels" ToRole="PersonelDetails" />
+          <NavigationProperty Name="Educations" Relationship="Self.EducationToPersonel" FromRole="Personels" ToRole="Educations" />
+          <NavigationProperty Name="Projects" Relationship="Self.ProjectToPersonel" FromRole="Personels" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="ProjectDetails">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_ProjectDetails_Projects" FromRole="ProjectDetails" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId" Type="Byte" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Projects_Customers" FromRole="Projects" ToRole="Customers" />
+          <NavigationProperty Name="Departments" Relationship="Self.FK_Projects_Departments" FromRole="Projects" ToRole="Departments" />
+          <NavigationProperty Name="ProjectDetails" Relationship="Self.FK_ProjectDetails_Projects" FromRole="Projects" ToRole="ProjectDetails" />
+          <NavigationProperty Name="Personels" Relationship="Self.ProjectToPersonel" FromRole="Projects" ToRole="Personels" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EducationToStudents" Relationship="Self.FK_EducationToStudents_Students" FromRole="Students" ToRole="EducationToStudents" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Students" FromRole="Students" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Departments_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Departments">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentToPersonels_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="DepartmentToPersonels" Type="Self.DepartmentToPersonels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="DepartmentToPersonels">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Educations_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Educations" Type="Self.Educations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Educations">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Projects_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DepartmentToPersonels_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="DepartmentToPersonels" Type="Self.DepartmentToPersonels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="DepartmentToPersonels">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationDetails_Educations">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="1" />
+          <End Role="EducationDetails" Type="Self.EducationDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Educations">
+              <PropertyRef Name="EducationId" />
+            </Principal>
+            <Dependent Role="EducationDetails">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToStudents_Educations">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="1" />
+          <End Role="EducationToStudents" Type="Self.EducationToStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Educations">
+              <PropertyRef Name="EducationId" />
+            </Principal>
+            <Dependent Role="EducationToStudents">
+              <PropertyRef Name="EducationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EducationToStudents_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="EducationToStudents" Type="Self.EducationToStudents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="EducationToStudents">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonelDetails_Personels">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="1" />
+          <End Role="PersonelDetails" Type="Self.PersonelDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personels">
+              <PropertyRef Name="PersonelId" />
+            </Principal>
+            <Dependent Role="PersonelDetails">
+              <PropertyRef Name="PersonelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDetails_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectId" />
+            </Principal>
+            <Dependent Role="ProjectDetails">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EducationToPersonel">
+          <End Role="Educations" Type="Self.Educations" Multiplicity="*" />
+          <End Role="Personels" Type="Self.Personels" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjectToPersonel">
+          <End Role="Personels" Type="Self.Personels" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PixelDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" />
+          <EntitySet Name="DepartmentToPersonels" EntityType="Self.DepartmentToPersonels" />
+          <EntitySet Name="EducationDetails" EntityType="Self.EducationDetails" />
+          <EntitySet Name="Educations" EntityType="Self.Educations" />
+          <EntitySet Name="EducationToStudents" EntityType="Self.EducationToStudents" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="PersonelDetails" EntityType="Self.PersonelDetails" />
+          <EntitySet Name="Personels" EntityType="Self.Personels" />
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Departments_Companies" Association="Self.FK_Departments_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Customers" Association="Self.FK_Payments_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Customers" Association="Self.FK_Projects_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentToPersonels_Departments" Association="Self.FK_DepartmentToPersonels_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="DepartmentToPersonels" EntitySet="DepartmentToPersonels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Educations_Departments" Association="Self.FK_Educations_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Educations" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Projects_Departments" Association="Self.FK_Projects_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DepartmentToPersonels_Personels" Association="Self.FK_DepartmentToPersonels_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="DepartmentToPersonels" EntitySet="DepartmentToPersonels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationDetails_Educations" Association="Self.FK_EducationDetails_Educations">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="EducationDetails" EntitySet="EducationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToStudents_Educations" Association="Self.FK_EducationToStudents_Educations">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="EducationToStudents" EntitySet="EducationToStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EducationToStudents_Students" Association="Self.FK_EducationToStudents_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="EducationToStudents" EntitySet="EducationToStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Students" Association="Self.FK_Payments_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonelDetails_Personels" Association="Self.FK_PersonelDetails_Personels">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="PersonelDetails" EntitySet="PersonelDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_Projects" Association="Self.FK_ProjectDetails_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="EducationToPersonel" Association="Self.EducationToPersonel">
+            <End Role="Educations" EntitySet="Educations" />
+            <End Role="Personels" EntitySet="Personels" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectToPersonel" Association="Self.ProjectToPersonel">
+            <End Role="Personels" EntitySet="Personels" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PixelDbModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PixelDbModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PixelDbModelStoreContainer" CdmEntityContainer="PixelDbEntities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="PixelDbModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="TotalRevenues" ColumnName="TotalRevenues" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PixelDbModel.Customers">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerIdNo" ColumnName="CustomerIdNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="PixelDbModel.Departments">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentToPersonels">
+            <EntityTypeMapping TypeName="PixelDbModel.DepartmentToPersonels">
+              <MappingFragment StoreEntitySet="DepartmentToPersonels">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationDetails">
+            <EntityTypeMapping TypeName="PixelDbModel.EducationDetails">
+              <MappingFragment StoreEntitySet="EducationDetails">
+                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+                <ScalarProperty Name="HoursOfEducation" ColumnName="HoursOfEducation" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EducationPeriod" ColumnName="EducationPeriod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="PixelDbModel.Educations">
+              <MappingFragment StoreEntitySet="Educations">
+                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="EducationName" ColumnName="EducationName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EducationToStudents">
+            <EntityTypeMapping TypeName="PixelDbModel.EducationToStudents">
+              <MappingFragment StoreEntitySet="EducationToStudents">
+                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="PixelDbModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="PaymentName" ColumnName="PaymentName" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonelDetails">
+            <EntityTypeMapping TypeName="PixelDbModel.PersonelDetails">
+              <MappingFragment StoreEntitySet="PersonelDetails">
+                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+                <ScalarProperty Name="İnterests" ColumnName="İnterests" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personels">
+            <EntityTypeMapping TypeName="PixelDbModel.Personels">
+              <MappingFragment StoreEntitySet="Personels">
+                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="PersonelName" ColumnName="PersonelName" />
+                <ScalarProperty Name="IdNo" ColumnName="IdNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDetails">
+            <EntityTypeMapping TypeName="PixelDbModel.ProjectDetails">
+              <MappingFragment StoreEntitySet="ProjectDetails">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="PixelDbModel.Projects">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="PixelDbModel.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PixelDbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EducationToPersonel" TypeName="PixelDbModel.EducationToPersonel" StoreEntitySet="EducationToPersonel">
+            <EndProperty Name="Educations">
+              <ScalarProperty Name="EducationId" ColumnName="EducationId" />
+            </EndProperty>
+            <EndProperty Name="Personels">
+              <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProjectToPersonel" TypeName="PixelDbModel.ProjectToPersonel" StoreEntitySet="ProjectToPersonel">
+            <EndProperty Name="Personels">
+              <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+            </EndProperty>
+            <EndProperty Name="Projects">
+              <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PixelDbModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PixelDbModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PixelDbModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PixelDbModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PixelDbModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PixelDbModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PixelDbModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PixelDbModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PixelDbModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

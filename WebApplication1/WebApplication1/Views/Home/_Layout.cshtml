@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "_Layout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @Html.Partial("_Head")
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- start header -->
+        <header>
+            <div class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><span>M</span>oderna</a>
+                    </div>
+                    @Html.Partial("_Menu")
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+        @RenderBody();
+        <footer>
+        @Html.Partial("_Footer")
+        </footer>
+    </div>
+    <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Script/js/jquery.js"></script>
+    <script src="~/Script/js/jquery.easing.1.3.js"></script>
+    <script src="~/Script/js/bootstrap.min.js"></script>
+    <script src="~/Script/js/jquery.fancybox.pack.js"></script>
+    <script src="~/Script/js/jquery.fancybox-media.js"></script>
+    <script src="~/Script/js/google-code-prettify/prettify.js"></script>
+    <script src="~/Script/js/portfolio/jquery.quicksand.js"></script>
+    <script src="~/Script/js/portfolio/setting.js"></script>
+    <script src="~/Script/js/jquery.flexslider.js"></script>
+    <script src="~/Script/js/animate.js"></script>
+    <script src="~/Script/js/custom.js"></script>
+
+</body>
+
+</html>
+

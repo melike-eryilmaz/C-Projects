@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="August_30_DbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abouts">
+          <Key>
+            <PropertyRef Name="AboutId" />
+          </Key>
+          <Property Name="AboutId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AboutName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="LogoUrl" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="150" />
+          <Property Name="RegisterDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ProductDetails">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="RegisterDate" Type="smalldatetime" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="isAvailibity" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductDetailsToImage">
+          <Key>
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="tinyint" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ImageUrl" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Sliders">
+          <Key>
+            <PropertyRef Name="SliderId" />
+          </Key>
+          <Property Name="SliderId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SliderName" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="SliderToImage">
+          <Key>
+            <PropertyRef Name="SliderId" />
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="SliderId" Type="tinyint" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProductDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetailsToImage_Images">
+          <End Role="Images" Type="Self.Images" Multiplicity="1" />
+          <End Role="ProductDetailsToImage" Type="Self.ProductDetailsToImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="ProductDetailsToImage">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetailsToImage_ProductDetails">
+          <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="1" />
+          <End Role="ProductDetailsToImage" Type="Self.ProductDetailsToImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDetails">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductDetailsToImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SliderToImage_Images">
+          <End Role="Images" Type="Self.Images" Multiplicity="1" />
+          <End Role="SliderToImage" Type="Self.SliderToImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="SliderToImage">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SliderToImage_Sliders">
+          <End Role="Sliders" Type="Self.Sliders" Multiplicity="1" />
+          <End Role="SliderToImage" Type="Self.SliderToImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sliders">
+              <PropertyRef Name="SliderId" />
+            </Principal>
+            <Dependent Role="SliderToImage">
+              <PropertyRef Name="SliderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="August_30_DbModelStoreContainer">
+          <EntitySet Name="Abouts" EntityType="Self.Abouts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDetails" EntityType="Self.ProductDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDetailsToImage" EntityType="Self.ProductDetailsToImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SliderToImage" EntityType="Self.SliderToImage" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProductDetails_Products" Association="Self.FK_ProductDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductDetails" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetailsToImage_Images" Association="Self.FK_ProductDetailsToImage_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductDetailsToImage" EntitySet="ProductDetailsToImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetailsToImage_ProductDetails" Association="Self.FK_ProductDetailsToImage_ProductDetails">
+            <End Role="ProductDetails" EntitySet="ProductDetails" />
+            <End Role="ProductDetailsToImage" EntitySet="ProductDetailsToImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SliderToImage_Images" Association="Self.FK_SliderToImage_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="SliderToImage" EntitySet="SliderToImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SliderToImage_Sliders" Association="Self.FK_SliderToImage_Sliders">
+            <End Role="Sliders" EntitySet="Sliders" />
+            <End Role="SliderToImage" EntitySet="SliderToImage" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="August_30_DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Abouts">
+          <Key>
+            <PropertyRef Name="AboutId" />
+          </Key>
+          <Property Name="AboutId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AboutName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LogoUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ProductDetails" Relationship="Self.ProductDetailsToImage" FromRole="Images" ToRole="ProductDetails" />
+          <NavigationProperty Name="Sliders" Relationship="Self.SliderToImage" FromRole="Images" ToRole="Sliders" />
+        </EntityType>
+        <EntityType Name="ProductDetails">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="isAvailibity" Type="Boolean" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductDetails_Products" FromRole="ProductDetails" ToRole="Products" />
+          <NavigationProperty Name="Images" Relationship="Self.ProductDetailsToImage" FromRole="ProductDetails" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Byte" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="ProductDetails" Relationship="Self.FK_ProductDetails_Products" FromRole="Products" ToRole="ProductDetails" />
+        </EntityType>
+        <EntityType Name="Sliders">
+          <Key>
+            <PropertyRef Name="SliderId" />
+          </Key>
+          <Property Name="SliderId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SliderName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Images" Relationship="Self.SliderToImage" FromRole="Sliders" ToRole="Images" />
+        </EntityType>
+        <Association Name="FK_Products_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductDetails">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductDetailsToImage">
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <End Role="ProductDetails" Type="Self.ProductDetails" Multiplicity="*" />
+        </Association>
+        <Association Name="SliderToImage">
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <End Role="Sliders" Type="Self.Sliders" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="August_30_DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abouts" EntityType="Self.Abouts" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="Images" EntityType="Self.Images" />
+          <EntitySet Name="ProductDetails" EntityType="Self.ProductDetails" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Sliders" EntityType="Self.Sliders" />
+          <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDetails_Products" Association="Self.FK_ProductDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductDetails" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="ProductDetailsToImage" Association="Self.ProductDetailsToImage">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ProductDetails" EntitySet="ProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="SliderToImage" Association="Self.SliderToImage">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Sliders" EntitySet="Sliders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="August_30_DbModelStoreContainer" CdmEntityContainer="August_30_DbEntities">
+          <EntitySetMapping Name="Abouts">
+            <EntityTypeMapping TypeName="August_30_DbModel.Abouts">
+              <MappingFragment StoreEntitySet="Abouts">
+                <ScalarProperty Name="AboutId" ColumnName="AboutId" />
+                <ScalarProperty Name="AboutName" ColumnName="AboutName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="August_30_DbModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="August_30_DbModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="August_30_DbModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDetails">
+            <EntityTypeMapping TypeName="August_30_DbModel.ProductDetails">
+              <MappingFragment StoreEntitySet="ProductDetails">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="isAvailibity" ColumnName="isAvailibity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="August_30_DbModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="August_30_DbModel.Sliders">
+              <MappingFragment StoreEntitySet="Sliders">
+                <ScalarProperty Name="SliderId" ColumnName="SliderId" />
+                <ScalarProperty Name="SliderName" ColumnName="SliderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProductDetailsToImage" TypeName="August_30_DbModel.ProductDetailsToImage" StoreEntitySet="ProductDetailsToImage">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+            </EndProperty>
+            <EndProperty Name="ProductDetails">
+              <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SliderToImage" TypeName="August_30_DbModel.SliderToImage" StoreEntitySet="SliderToImage">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+            </EndProperty>
+            <EndProperty Name="Sliders">
+              <ScalarProperty Name="SliderId" ColumnName="SliderId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
